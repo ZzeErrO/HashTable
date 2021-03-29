@@ -20,22 +20,18 @@ namespace HashTable
                 hash.Add(key.ToString(), word);
                 key++;
             }
-            Console.WriteLine("Index    Key     Value");
 
+            Console.WriteLine("Index    Key     Value");
             for (int i = 0; i < para.Length; i++)
             {
                 hash.Display(i.ToString());
             }
 
-            Console.WriteLine("Frequency of Values");
+            Console.WriteLine("Index    Key     Value");
+            hash.Remove("17");
             for (int i = 0; i < para.Length; i++)
             {
-                int count = 0;
-                for (int j = 0; j < para.Length; j++)
-                {
-                    count = hash.Frequency(i.ToString(),j.ToString());
-                }
-                Console.WriteLine("Frequency " + count  + "\n");
+                hash.Display(i.ToString());
             }
 
             Console.ReadKey();
