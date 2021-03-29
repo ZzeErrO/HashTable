@@ -11,26 +11,27 @@ namespace HashTable
         static void Main(string[] args)
         {
             Console.WriteLine("Hash table demo"); //() []
-            int size1 = 6;
-            MyMapNode<string, string> hash = new MyMapNode<string, string>(size1);
-            hash.Add("0", "To");
-            hash.Add("1", "be");
-            hash.Add("2", "or");
-            hash.Add("3", "not");
-            hash.Add("4", "to");
-            hash.Add("5", "be");
+            string paragraph = "Paranoids are not paranoid because they are paranoid but because they keep putting themselves deliberately into paranoid avoidable situations";
+            string[] para = paragraph.Split(' ');
+            MyMapNode<string, string> hash = new MyMapNode<string, string>(para.Length);
+            int key = 0;
+            foreach (string word in para)
+            {
+                hash.Add(key.ToString(), word);
+                key++;
+            }
             Console.WriteLine("Index    Key     Value");
 
-            for (int i = 0; i < size1; i++)
+            for (int i = 0; i < para.Length; i++)
             {
                 hash.Display(i.ToString());
             }
 
             Console.WriteLine("Frequency of Values");
-            for (int i = 0; i < size1; i++)
+            for (int i = 0; i < para.Length; i++)
             {
                 int count = 0;
-                for (int j = 0; j < size1; j++)
+                for (int j = 0; j < para.Length; j++)
                 {
                     count = hash.Frequency(i.ToString(),j.ToString());
                 }

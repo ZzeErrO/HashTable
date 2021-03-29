@@ -10,10 +10,12 @@ namespace HashTable
     {
         private readonly int size;
         private readonly LinkedList<KeyValue<K, V>>[] items;
+        private readonly List<int> arr;
         public MyMapNode(int size)
         {
             this.size = size;
             this.items = new LinkedList<KeyValue<K, V>>[size];
+            this.arr = new List<int>();
         }
 
         public void Add(K key, V value)
@@ -27,6 +29,7 @@ namespace HashTable
         protected int GetArrayPosition(K key)
         {
             int position = key.GetHashCode() % size;
+            
             return Math.Abs(position);
         }
 
