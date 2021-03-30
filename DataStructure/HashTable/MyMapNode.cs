@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace HashTable
 {
-    class MyMapNode<K, V>
+    public class MyMapNode<K, V>
     {
         private readonly int size;
         private readonly LinkedList<KeyValue<K, V>>[] items;
         private readonly List<int> arr;
+        public static Dictionary<V, int> dict = new Dictionary<V, int>();
         public MyMapNode(int size)
         {
             this.size = size;
@@ -78,31 +79,25 @@ namespace HashTable
 
         }
 
-        internal int Frequency(K key1, K key2)
+        internal void Frequency(K key1, V [] para)
         {
-            int frequency = 0;
             int position1 = GetArrayPosition(key1);
-            LinkedList<KeyValue<K, V>> linkedList = GetLinkedList(position1);
-            int position2 = GetArrayPosition(key2);
-            LinkedList<KeyValue<K, V>> linkedList1 = GetLinkedList(position2);
-            foreach (KeyValue<K, V> item in linkedList)
+            LinkedList<KeyValue<K, V>> linkedList1 = GetLinkedList(position1);
+
+            foreach (KeyValue<K, V> item in linkedList1)
             {
-                foreach (KeyValue<K, V> a in linkedList1)
+                int freq = 0;
+                foreach (V item1 in para)
                 {
-                    if (item.Value.Equals(a.Value))
+                    if (item.Value.Equals(item1))
                     {
-                        frequency++;
+                        freq++;
+                        dict[item.Value] = freq;
                     }
-                }
-
-                if (frequency > 0)
-                {
-                    Console.WriteLine("Value = " + item.Value);
-                }
-
+                }    
+               // return;
             }
 
-            return frequency;
         }
 
         public V Get(K key)
@@ -120,6 +115,9 @@ namespace HashTable
         }
 
     }
+
+
+
 
     public struct KeyValue<k, v>
     {
